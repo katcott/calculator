@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
+<body onload="addEventListeners()">
+    <div class="calculatorBody">
+        <div class="calculatorScreen"><span id="calcScreen"></span></div>
+        <div class="buttons">
+            <div class="numberButtons">
+                <button type="button" id="btnOne">1</button>
+                <button type="button" id="btnTwo">2</button>
+                <button type="button" id="btnThree">3</button>
+                <button type="button" id="btnFour">4</button>
+                <button type="button" id="btnFive">5</button>
+                <button type="button" id="btnSix">6</button>
+                <button type="button" id="btnSeven">7</button>
+                <button type="button" id="btnEight">8</button>
+                <button type="button" id="btnNine">9</button>
+                <button type="button" id="btnZero">0</button>
+                <button type="button" id="btnDecimal">.</button>
+                <button type="button" id="btnClear">C</button>
+            </div>
+            <div class="controlButtons">
+                <button type="button" id="btnPlus">+</button>
+                <button type="button" id="btnMinus">-</button>
+                <button type="button" id="btnTimes">x</button>
+                <button type="button" id="btnDivide">÷</button>
+                <button type="button" id="btnEquals">=</button>
+            </div>
+        </div>
+    </div>
+    <div style="display: none">
+        <p id="firstNumber"></p>
+        <p id="secondNumber"></p>
+        <p id="operator"
+    </div>
 </body>
 </html>
