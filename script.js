@@ -25,9 +25,8 @@ function addEventListeners(){
 }
 
 function clear(){
-    document.getElementById("calcScreen").innerText=""; 
-    firstNumber =  secondNumber = operator = result = null; 
-    console.log("clear");
+    calcScreen.innerText = "";
+    firstNumber = secondNumber = firstOperator = secondOperator = result = null;
 }
 
 function displayNumber(num){
@@ -35,60 +34,77 @@ function displayNumber(num){
 }
 
 function addOperator(operatorButton){
-    if(firstNumber === null && result === null){
+    if(!firstNumber)
         firstNumber = calcScreen.innerText;
-        firstOperator = operatorButton.innerText;
-    }
-    if(firstNumber !==null && result === null){
+    else if(!secondNumber){
         secondNumber = calcScreen.innerText;
+        calcScreen.innerText = "";
         operate();
     }
-    if(result && firstNumber){
-        firstNumber = result;
-    }
-    console.log(firstNumber);
-    console.log(secondNumber);
-    console.log(result);
+    if(!firstOperator)
+        firstOperator = button.innerText;
+    else if(!secondOperator)
+        secondOperator = button.innerText;
     calcScreen.innerText = "";
 }
 
 
 function add(numberOne, numberTwo){
-    return numberOne + numberTwo;
+    return parseFloat(numberOne) + parseFloat(numberTwo);
 }
 
 function subtract(numberOne, numberTwo){
-    return numberOne - numberTwo;
+    return parseFloat(numberOne) - parseFloat(numberTwo);
 }
 
 function multiply(numberOne, numberTwo){
-    return numberOne * numberTwo;
+    return parseFloat(numberOne) * parseFloat(numberTwo);
 }
 
 function divide(numberOne, numberTwo){
-    return (numberOne / numberTwo);
+    return parseFloat(numberOne) / parseFloat(numberTwo);
 }
 
 function operate(){
-    secondNumber = calcScreen.innerText;
-    if(result){
+        if(!firstNumber)
+        return calcScreen.innerText = "ERROR";
+    if(!secondNumber)
+        secondNumber = calcScreen.innerText;
+    if(!secondOperator){
+        switch (firstOperator){
+            case "-":
+                result = subtract(firstNumber, secondNumber)
+                break;
+            case "+":
+                result = add(firstNumber, secondNumber);
+                break;
+            case "x":
+                result = multiply(firstNumber, secondNumber);
+                break;
+            case "÷":
+                result = divide(firstNumber, secondNumber);
+                break;
+        }
         firstNumber = result;
+        calcScreen.innerText = result;
     }
-    if(operator === "+"){
-        result = add(firstNumber, secondNumber);
+    if(secondOperator){
+        secondNumber = calcScreen.innerText;
+        switch (secondOperator){
+            case "-":
+                result = subtract(firstNumber, secondNumber)
+                break;
+            case "+":
+                result = add(firstNumber, secondNumber);
+                break;
+            case "x":
+                result = multiply(firstNumber, secondNumber);
+                break;
+            case "÷":
+                result = divide(firstNumber, secondNumber);
+                break;
+        }
+        calcScreen.innerText = result;
     }
-    else if(operator === "-"){
-        result = subtract(firstNumber, secondNumber);
-    }
-    else if(operator ==="x"){
-        result = multiply(firstNumber, secondNumber);
-    }
-    else if(operator === "÷"){
-        result = divide(firstNumber, secondNumber);
-    }
-    calcScreen.innerText = result;
-    console.log(result);
-    firstNumber = null;
-    secondNumber = null;
 }
 
